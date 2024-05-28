@@ -1,4 +1,9 @@
 import { Vector3 } from "three";
+import {
+	closeDebugWindow,
+	initDebugWindow,
+	openDebugWindow,
+} from "./DebuggWindow";
 
 let MOVE_SPEED = 1;
 
@@ -28,7 +33,7 @@ export function initKeyboard() {
  * @param camera The object being moved by the inputs
  * @param delta The delta time between keyinputs
  */
-export function handleKeyboardInput(camera) {
+export function handleKeyboardMovementInput(camera) {
 	if (keyboard["w"]) {
 		cameraPosition.z -= MOVE_SPEED;
 	}
@@ -49,4 +54,34 @@ export function handleKeyboardInput(camera) {
 	}
 	camera.position.copy(cameraPosition);
 	camera.rotation.setFromVector3(cameraRotation);
+}
+
+/* This one has it's own function to minimize performance usage
+Since the movement key get checked on every frame
+other inputs will get a normal event listener */
+/**
+ *
+ */
+export function handleOtherKeyBoardInput() {
+	//probably should have used some way of state management
+	let initDebugBoolean = false;
+	let debugWindowOpen = false;
+	document.addEventListener("keypress", (event) => {
+		//Belive it or not, this is Ctrl + Q
+		if (event.key === "\x11") {
+			if (initDebugBoolean === false) {
+				initDebugWindow();
+				debugWindowOpen = openDebugWindow();
+				initDebugBoolean = true;
+			} else {
+				if (!debugWindowOpen) {
+					debugWindowOpen = openDebugWindow();
+				} else {
+					debugWindowOpen = closeDebugWindow();
+				}
+			}
+
+			console.log(event.key);
+		}
+	});
 }

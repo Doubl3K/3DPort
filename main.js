@@ -1,6 +1,10 @@
 import * as THREE from "three";
 import { init3DHelperGrid } from "./src/GridHelper";
-import { handleKeyboardInput, initKeyboard } from "./src/KeyboardInput";
+import {
+	handleKeyboardMovementInput,
+	handleOtherKeyBoardInput,
+	initKeyboard,
+} from "./src/KeyboardInput";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -25,7 +29,7 @@ camera.position.z = 5;
 function animate() {
 	requestAnimationFrame(animate);
 
-	handleKeyboardInput(camera);
+	handleKeyboardMovementInput(camera);
 
 	cube.rotation.x += 0.01;
 	cube.rotation.y += 0.01;
@@ -34,4 +38,12 @@ function animate() {
 }
 
 initKeyboard();
+handleOtherKeyBoardInput();
 animate();
+
+/* 
+	TODO: 
+	make a new div component called a debug wrapper
+	should i hard code it into the html or build it dynamicly? 
+	For example: on button presse let div = document.createElement("div")
+*/
