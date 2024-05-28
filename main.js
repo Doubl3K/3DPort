@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { init3DHelperGrid } from "./src/GridHelper";
+import { handleKeyboardInput, initKeyboard } from "./src/KeyboardInput";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -24,10 +25,13 @@ camera.position.z = 5;
 function animate() {
 	requestAnimationFrame(animate);
 
+	handleKeyboardInput(camera);
+
 	cube.rotation.x += 0.01;
 	cube.rotation.y += 0.01;
 
 	renderer.render(scene, camera);
 }
 
+initKeyboard();
 animate();
