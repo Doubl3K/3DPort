@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { init3DHelperGrid } from "./src/GridHelper";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -8,6 +9,7 @@ const camera = new THREE.PerspectiveCamera(
 	1000
 );
 
+init3DHelperGrid(scene);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
