@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { updateDebugWindow } from "./src/DebuggWindow";
+import { initFloor } from "./src/Floor";
 import { init3DHelperGrid } from "./src/GridHelper";
 import {
 	handleKeyboardMovementInput,
@@ -16,6 +17,8 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 init3DHelperGrid(scene);
+const floor = initFloor();
+
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
@@ -23,7 +26,7 @@ document.body.appendChild(renderer.domElement);
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+scene.add(cube, floor);
 
 camera.position.z = 5;
 
