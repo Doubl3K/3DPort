@@ -1,15 +1,22 @@
 let debugWindowWrapper = undefined;
+let camData = undefined;
 
 export function initDebugWindow() {
 	debugWindowWrapper = document.createElement("div");
 	debugWindowWrapper.classList.add("debugWindowWrapper");
 
-	let debugText = document.createElement("p");
-	debugText.classList.add("debugText");
-	debugText.innerHTML = "This is a window";
+	let debugHeadline = document.createElement("h1");
+	debugHeadline.classList.add("debugHeadline");
+	debugHeadline.innerHTML = "Debug information";
 
-	debugWindowWrapper.appendChild(debugText);
-	document.getElementsByTagName("body")[0].appendChild(debugWindowWrapper);
+	let camLabel = document.createElement("label");
+	camLabel.innerHTML = "Player position: ";
+	camLabel.classList.add("camLabel");
+
+	camData = document.createElement("span");
+
+	debugWindowWrapper.append(debugHeadline, camLabel, camData);
+	document.getElementsByTagName("body")[0].append(debugWindowWrapper);
 }
 
 export function openDebugWindow() {
@@ -24,4 +31,19 @@ export function closeDebugWindow() {
 
 	//Used to tell if the debug window is open
 	return false;
+}
+
+export function updateDebugWindow(cameraPosition) {
+	//Better user perfomance since called once per frame
+	if (debugWindowWrapper === undefined) {
+		return;
+	}
+
+	camData.textContent =
+		"X: " +
+		cameraPosition.x +
+		" Y: " +
+		cameraPosition.y +
+		" Z: " +
+		cameraPosition.z;
 }

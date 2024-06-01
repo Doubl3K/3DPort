@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { updateDebugWindow } from "./src/DebuggWindow";
 import { init3DHelperGrid } from "./src/GridHelper";
 import {
 	handleKeyboardMovementInput,
@@ -33,6 +34,8 @@ function animate() {
 
 	cube.rotation.x += 0.01;
 	cube.rotation.y += 0.01;
+
+	updateDebugWindow(camera.position);
 
 	renderer.render(scene, camera);
 }
