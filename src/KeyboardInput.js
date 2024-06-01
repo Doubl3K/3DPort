@@ -33,27 +33,55 @@ export function initKeyboard() {
  * @param camera The object being moved by the inputs
  * @param delta The delta time between keyinputs
  */
-export function handleKeyboardMovementInput(camera) {
+export function handleKeyboardMovementInput(camera, floorCollision) {
+	let newPosition = new Vector3(
+		camera.position.x,
+		camera.position.y,
+		camera.position.z
+	);
+
 	if (keyboard["w"]) {
-		cameraPosition.z -= MOVE_SPEED;
+		newPosition.z -= MOVE_SPEED;
+		if (!floorCollision.containsPoint(newPosition)) {
+			camera.position.z -= MOVE_SPEED;
+		}
+		newPosition.z += MOVE_SPEED; // Reset for the next check
 	}
 	if (keyboard["s"]) {
-		cameraPosition.z += MOVE_SPEED;
+		newPosition.z += MOVE_SPEED;
+		if (!floorCollision.containsPoint(newPosition)) {
+			camera.position.z += MOVE_SPEED;
+		}
+		newPosition.z -= MOVE_SPEED;
 	}
 	if (keyboard["a"]) {
-		cameraPosition.x -= MOVE_SPEED;
+		newPosition.x -= MOVE_SPEED;
+		if (!floorCollision.containsPoint(newPosition)) {
+			camera.position.x -= MOVE_SPEED;
+		}
+		newPosition.x += MOVE_SPEED;
 	}
 	if (keyboard["d"]) {
-		cameraPosition.x += MOVE_SPEED;
+		newPosition.x += MOVE_SPEED;
+		if (!floorCollision.containsPoint(newPosition)) {
+			camera.position.x += MOVE_SPEED;
+		}
+		newPosition.x -= MOVE_SPEED;
 	}
 	if (keyboard["c"]) {
-		cameraPosition.y -= MOVE_SPEED;
+		newPosition.y -= MOVE_SPEED;
+		if (!floorCollision.containsPoint(newPosition)) {
+			camera.position.y -= MOVE_SPEED;
+		}
+		newPosition.y += MOVE_SPEED;
 	}
 	if (keyboard[" "]) {
-		cameraPosition.y += MOVE_SPEED;
+		newPosition.y += MOVE_SPEED;
+		if (!floorCollision.containsPoint(newPosition)) {
+			camera.position.y += MOVE_SPEED;
+		}
+		newPosition.y -= MOVE_SPEED;
 	}
-	camera.position.copy(cameraPosition);
-	camera.rotation.setFromVector3(cameraRotation);
 }
 
 /* This one has it's own function to minimize performance usage

@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { updateDebugWindow } from "./src/DebuggWindow";
-import { initFloor } from "./src/Floor";
+import { addFloorColision, initFloor } from "./src/Floor";
 import { init3DHelperGrid } from "./src/GridHelper";
 import {
 	handleKeyboardMovementInput,
@@ -18,6 +18,7 @@ const camera = new THREE.PerspectiveCamera(
 
 init3DHelperGrid(scene);
 const floor = initFloor();
+const floorColision = addFloorColision();
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -29,11 +30,11 @@ const cube = new THREE.Mesh(geometry, material);
 scene.add(cube, floor);
 
 camera.position.z = 5;
+camera.position.y = 5;
 
 function animate() {
 	requestAnimationFrame(animate);
-
-	handleKeyboardMovementInput(camera);
+	handleKeyboardMovementInput(camera, floorColision);
 
 	cube.rotation.x += 0.01;
 	cube.rotation.y += 0.01;
