@@ -5,7 +5,7 @@ import {
 	openDebugWindow,
 } from "./DebuggWindow";
 
-let MOVE_SPEED = 1;
+let MOVE_SPEED = 0.1;
 
 let keyboard = {};
 let cameraPosition = new Vector3(0, 0, 0);
