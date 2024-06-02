@@ -33,54 +33,22 @@ export function initKeyboard() {
  * @param camera The object being moved by the inputs
  * @param delta The delta time between keyinputs
  */
-export function handleKeyboardMovementInput(camera, floorCollision) {
-	let newPosition = new Vector3(
-		camera.position.x,
-		camera.position.y,
-		camera.position.z
-	);
-
+export function handleKeyboardMovementInput(controls, floorCollision) {
 	if (keyboard["w"]) {
-		newPosition.z -= MOVE_SPEED;
-		if (!floorCollision.containsPoint(newPosition)) {
-			camera.position.z -= MOVE_SPEED;
-		}
-		newPosition.z += MOVE_SPEED; // Reset for the next check
+		controls.moveForward(MOVE_SPEED);
 	}
 	if (keyboard["s"]) {
-		newPosition.z += MOVE_SPEED;
-		if (!floorCollision.containsPoint(newPosition)) {
-			camera.position.z += MOVE_SPEED;
-		}
-		newPosition.z -= MOVE_SPEED;
+		controls.moveForward(-MOVE_SPEED);
 	}
 	if (keyboard["a"]) {
-		newPosition.x -= MOVE_SPEED;
-		if (!floorCollision.containsPoint(newPosition)) {
-			camera.position.x -= MOVE_SPEED;
-		}
-		newPosition.x += MOVE_SPEED;
+		controls.moveRight(-MOVE_SPEED);
 	}
 	if (keyboard["d"]) {
-		newPosition.x += MOVE_SPEED;
-		if (!floorCollision.containsPoint(newPosition)) {
-			camera.position.x += MOVE_SPEED;
-		}
-		newPosition.x -= MOVE_SPEED;
+		controls.moveRight(MOVE_SPEED);
 	}
 	if (keyboard["c"]) {
-		newPosition.y -= MOVE_SPEED;
-		if (!floorCollision.containsPoint(newPosition)) {
-			camera.position.y -= MOVE_SPEED;
-		}
-		newPosition.y += MOVE_SPEED;
 	}
 	if (keyboard[" "]) {
-		newPosition.y += MOVE_SPEED;
-		if (!floorCollision.containsPoint(newPosition)) {
-			camera.position.y += MOVE_SPEED;
-		}
-		newPosition.y -= MOVE_SPEED;
 	}
 }
 
