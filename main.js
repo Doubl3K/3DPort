@@ -47,10 +47,3 @@ function animate() {
 initKeyboard();
 handleOtherKeyBoardInput();
 animate();
-
-/* 
-	TODO: 
-	make a new div component called a debug wrapper
-	should i hard code it into the html or build it dynamicly? 
-	For example: on button presse let div = document.createElement("div")
-*/
