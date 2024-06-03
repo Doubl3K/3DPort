@@ -54,7 +54,7 @@ jobs:
         run: npm install
       - run: npm ci
       - name: Build for production
-        run: npx vite build
+        run: npx vite build && mv dist ../dist
       - name: Push to main
         run: |
           git config --global user.name 'GitHub Actions'
