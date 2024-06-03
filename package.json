@@ -1,22 +1,22 @@
 {
-	"name": "3dport",
-	"version": "1.0.0",
-	"main": "main.js",
-	"type": "module",
-	"scripts": {
-		"quickstart": "npm install && npm run dev"
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "vite --open"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"description": "",
-	"dependencies": {
-		"three": "^0.164.1"
-	},
-	"devDependencies": {
-		"vite": "^5.2.11"
-		"open": "^8.0.0"
-	}
+  "name": "3dport",
+  "version": "1.0.0",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite --open",
+    "quickstart": "npm install && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "three": "^0.164.1"
+  },
+  "devDependencies": {
+    "vite": "^5.2.11",
+    "open": "^8.0.0"
+  }
 }
