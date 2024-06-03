@@ -37,26 +37,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout develop branch
-        uses: actions/checkout@v4
-        with:
-          ref: develop
-          token: ${{ secrets.PUSHMAINSECRET }}
-          fetch-depth: 0
-      - name: Push to main
-        run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'github-actions@github.com'
-          git checkout main
-          git merge --no-ff develop
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.PUSHMAINSECRET }}
-      - name: Push to gh-pages
-        run: |
-          git checkout --orphan gh-pages
-          git rm -rf .
-          cp -r dist/* .
-          git add .
-          git commit -m "Update gh-pages"
-          git push origin gh-pages
+- name: Checkout develop branch
+  uses: actions/checkout@v4
+  with:
+    ref: develop
+    token: ${{ secrets.PUSHMAINSECRET }}
+    fetch-depth: 0
+- name: Use Node.js ${{ matrix.node-version }}
+  uses: actions/setup-node@v3
+  with:
+    node-version: ${{ matrix.node-version }}
+    cache: "npm"
+- name: Install packages
+  run: npm install
+- run: npm ci
+- name: Build for production
+  run: npx vite build
+- name: Push to main
+  run: |
+    git config --global user.name 'GitHub Actions'
+    git config --global user.email 'github-actions@github.com'
+    git checkout main
+    git merge --no-ff develop
+    git push origin main
+  env:
+    GITHUB_TOKEN: ${{ secrets.PUSHMAINSECRET }}
+- name: Push to gh-pages
+  run: |
+    git checkout --orphan gh-pages
+    git rm -rf .
+    cp -r dist/* .
+    git add .
+    git commit -m "Update gh-pages"
+    git push origin gh-pages
