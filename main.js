@@ -9,6 +9,7 @@ import {
 	handleOtherKeyBoardInput,
 	initKeyboard,
 } from "./src/KeyboardInput";
+import { initResizeListener } from "./src/Resize";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -47,6 +48,7 @@ function animate() {
 	renderer.render(scene, camera);
 }
 
+initResizeListener(camera, renderer);
 initKeyboard();
 handleOtherKeyBoardInput();
 animate();
