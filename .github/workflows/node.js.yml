@@ -52,3 +52,6 @@ jobs:
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.PUSHMAINSECRET }}
+      - name: Push to gh-pages
+        run: |
+          git subtree push --prefix dist origin gh-pages
