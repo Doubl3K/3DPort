@@ -15,26 +15,26 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [16.x, 17.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout develop branch
+        uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: develop
+          token: ${{ secrets.PUSHMAINSECRET }}
+          fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - name: Install packages
-      - run: npm install
-
+        run: npm install
       - run: npm ci
-
       - name: Build for production
         run: npx vite build
-
       - name: Push to main
         run: |
           git config --global user.name 'GitHub Actions'
@@ -42,3 +42,5 @@ jobs:
           git checkout main
           git merge --no-ff develop
           git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.PUSHMAINSECRET }}
