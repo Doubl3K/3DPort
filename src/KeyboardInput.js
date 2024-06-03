@@ -5,11 +5,15 @@ import {
 	openDebugWindow,
 } from "./DebuggWindow";
 
+import audio from "../assets/sounds/walkingOnWood.mp3";
+
 let MOVE_SPEED = 0.1;
 
 let keyboard = {};
 let cameraPosition = new Vector3(0, 0, 0);
 let cameraRotation = new Vector3(0, 0, 0);
+
+const walkingSound = new Audio(audio);
 
 /**
  * Initializes the Keyboard by attaching eventListener for keydown and keyup.
@@ -50,6 +54,7 @@ export function handleKeyboardMovementInput(controls, floorCollision) {
 	}
 	if (keyboard[" "]) {
 	}
+	handleWalkingSound();
 }
 
 /* This one has it's own function to minimize performance usage
@@ -80,4 +85,19 @@ export function handleOtherKeyBoardInput() {
 			console.log(event.key);
 		}
 	});
+}
+
+/**
+ * Handles the walking sound by checking if the player is moving
+ * If the player is moving the sound will play, if not it will pause
+ * and reset the audio time to a random value
+ */
+function handleWalkingSound() {
+	if (keyboard["w"] || keyboard["a"] || keyboard["s"] || keyboard["d"]) {
+		walkingSound.loop = true;
+		walkingSound.play();
+	} else {
+		walkingSound.pause();
+		walkingSound.currentTime = Math.random() * 10;
+	}
 }
