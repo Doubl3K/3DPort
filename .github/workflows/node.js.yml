@@ -31,6 +31,8 @@ jobs:
       - run: npm ci
       - name: Build for production
         run: npx vite build
+      - name: Move dist to a safe location
+        run: mv dist ../dist
 
   push:
     needs: build
@@ -66,7 +68,7 @@ jobs:
         run: |
           git checkout --orphan gh-pages
           git rm -rf .
-          cp -r dist/* .
+          mv ../dist .
           git add .
           git commit -m "Update gh-pages"
           git push origin gh-pages
