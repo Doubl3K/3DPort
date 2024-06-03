@@ -20,13 +20,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+      - name: Install packages
       - run: npm install
+
       - run: npm ci
-      - run: npm run build --if-present
-      - name: Buld for production
+
+      - name: Build for production
         run: npx vite build
+
+      - name: Push to main
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'github-actions@github.com'
+          git checkout main
+          git merge --no-ff develop
+          git push origin main
