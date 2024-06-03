@@ -4,8 +4,9 @@
 	"main": "main.js",
 	"type": "module",
 	"scripts": {
+		"quickstart": "npm install && npm run dev"
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "start http://localhost:5173 && vite"
+		"dev": "vite --open"
 	},
 	"keywords": [],
 	"author": "",
@@ -16,5 +17,6 @@
 	},
 	"devDependencies": {
 		"vite": "^5.2.11"
+		"open": "^8.0.0"
 	}
 }
