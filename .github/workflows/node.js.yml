@@ -2,7 +2,7 @@ name: Test prod and push to main
 
 on:
   schedule:
-    # Runs once a week at 6am on Saturday
+    # Runs once a week at 6am on Saturdays
     - cron: "0 6 * * 6"
   workflow_dispatch:
 
