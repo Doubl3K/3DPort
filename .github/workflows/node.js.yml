@@ -2,7 +2,7 @@ name: Test prod and push to main
 
 on:
   schedule:
-    # Runs once a week at 6am on Saturdayss
+    # Runs once a week at 6am on Saturdays
     - cron: "0 6 * * 6"
   workflow_dispatch:
 
@@ -68,9 +68,10 @@ jobs:
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'github-actions@github.com'
-          git checkout --orphan gh-pages
-          git rm -rf .
-          cp -r ../dist/* .
-          git add .
+          git checkout gh-pages
+          git rm -rf *
+          mkdir dist
+          cp -r ../dist/* dist/
+          git add dist
           git commit -m "Push dist directory to gh-pages"
           git push -f origin gh-pages
