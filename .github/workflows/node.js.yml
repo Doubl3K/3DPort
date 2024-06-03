@@ -43,6 +43,16 @@ jobs:
           ref: develop
           token: ${{ secrets.PUSHMAINSECRET }}
           fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: Install packages
+        run: npm install
+      - run: npm ci
+      - name: Build for production
+        run: npx vite build
       - name: Push to main
         run: |
           git config --global user.name 'GitHub Actions'
