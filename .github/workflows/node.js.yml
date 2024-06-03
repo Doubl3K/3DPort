@@ -7,6 +7,7 @@ on:
   schedule:
   # Runs once a week at 6am on Saturday
     - cron: '0 6 * * 6'
+    workflow_dispatch:
 
 jobs:
   build:
@@ -27,4 +28,3 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm run dev
