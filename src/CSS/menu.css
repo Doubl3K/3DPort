@@ -36,3 +36,14 @@
 .controlsWrapper > span{
     margin: 10px 10px 0px 10px;
 }
+
+.hoverPointer {
+    cursor: pointer;
+    transition: all 0.5s;
+    opacity: 1;
+}
+
+.hoverPointer:hover {
+    opacity: 0.7;
+    transition: all 0.5s;
+}
