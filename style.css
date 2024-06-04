@@ -44,3 +44,43 @@ body{
 body{
     overflow: hidden;
 }
+
+.mainMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: black;
+    width: 100%;
+    height: 100%;
+    margin-top: 10vh;
+}
+
+.mainMenuContentWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainMenuContentWrapper > button {
+    padding: 10px;
+    margin: 10px;
+}
+
+.mainMenuHeaderWrapper{
+    display: flex;
+    flex-direction: row;
+    max-height: 20vh;
+}
+
+.mainMenuHeaderWrapper > h1 {
+    padding: 10px;
+}
+
+.controlsWrapper > span{
+    margin: 10px 10px 0px 10px;
+}
+
+.hidden{
+    display: none!important;
+}

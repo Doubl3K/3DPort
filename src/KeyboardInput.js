@@ -81,8 +81,6 @@ export function handleOtherKeyBoardInput() {
 					debugWindowOpen = closeDebugWindow();
 				}
 			}
-
-			console.log(event.key);
 		}
 	});
 }
