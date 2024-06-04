@@ -38,6 +38,16 @@ const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube, floor);
+let cubeArr = [];
+
+for (let index = 0; index < 100; index++) {
+	const newCube = cube.clone();
+	newCube.position.x = Math.floor(Math.random() * 30) - 5;
+	newCube.position.y = Math.floor(Math.random() * 10) + 1;
+	newCube.position.z = Math.floor(Math.random() * 30) + 1;
+	cubeArr.push(newCube);
+	scene.add(newCube);
+}
 
 camera.position.z = 5;
 camera.position.y = 1;
@@ -45,7 +55,10 @@ camera.position.y = 1;
 function animate() {
 	requestAnimationFrame(animate);
 	handleKeyboardMovementInput(controls, floorColision);
-
+	cubeArr.forEach((cube) => {
+		cube.rotation.x += Math.random() * 0.1;
+		cube.rotation.y += Math.random() * 0.1;
+	});
 	cube.rotation.x += 0.01;
 	cube.rotation.y += 0.01;
 
@@ -57,5 +70,5 @@ function animate() {
 initResizeListener(camera, renderer);
 initKeyboard();
 handleOtherKeyBoardInput();
-animate();
 initSettings(body);
+animate();
