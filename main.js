@@ -11,6 +11,10 @@ import {
 } from "./src/KeyboardInput";
 import { initResizeListener } from "./src/Resize";
 
+import "./src/CSS/debugwindow.css";
+import "./src/CSS/main.css";
+import "./src/CSS/menu.css";
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
 	75,
