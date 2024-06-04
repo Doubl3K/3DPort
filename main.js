@@ -14,6 +14,7 @@ import { initResizeListener } from "./src/Resize";
 import "./src/CSS/debugwindow.css";
 import "./src/CSS/main.css";
 import "./src/CSS/menu.css";
+import { initSettings } from "./src/Settings";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -22,6 +23,7 @@ const camera = new THREE.PerspectiveCamera(
 	0.1,
 	1000
 );
+const body = document.body;
 
 init3DHelperGrid(scene);
 const floor = initFloor();
@@ -56,3 +58,4 @@ initResizeListener(camera, renderer);
 initKeyboard();
 handleOtherKeyBoardInput();
 animate();
+initSettings(body);
