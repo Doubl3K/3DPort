@@ -10,11 +10,12 @@ import {
 	initKeyboard,
 } from "./src/KeyboardInput";
 import { initResizeListener } from "./src/Resize";
+import { initSettings } from "./src/Settings";
 
+import "./src/CSS/crosshair.css";
 import "./src/CSS/debugwindow.css";
 import "./src/CSS/main.css";
 import "./src/CSS/menu.css";
-import { initSettings } from "./src/Settings";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
