@@ -1,4 +1,5 @@
 import { Vector3 } from "three";
+import { initCLI } from "./CommandLine";
 import {
 	closeDebugWindow,
 	initDebugWindow,
@@ -14,6 +15,7 @@ let cameraPosition = new Vector3(0, 0, 0);
 let cameraRotation = new Vector3(0, 0, 0);
 
 const walkingSound = new Audio(audio);
+let cliWrapper = null;
 
 /**
  * Initializes the Keyboard by attaching eventListener for keydown and keyup.
@@ -81,6 +83,17 @@ export function handleOtherKeyBoardInput() {
 					debugWindowOpen = closeDebugWindow();
 				}
 			}
+		}
+
+		if (event.key === "T") {
+			event.stopPropagation();
+			if (!cliWrapper) {
+				cliWrapper = initCLI(document.body);
+			} else {
+				cliWrapper.classList.toggle("hidden");
+			}
+			event.preventDefault();
+			cliWrapper.querySelector(".cliInput").focus();
 		}
 	});
 }
