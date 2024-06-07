@@ -16,14 +16,10 @@ import "./src/CSS/crosshair.css";
 import "./src/CSS/debugwindow.css";
 import "./src/CSS/main.css";
 import "./src/CSS/menu.css";
+import initCamera from "./src/Camera";
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
-	75,
-	window.innerWidth / window.innerHeight,
-	0.1,
-	1000
-);
+const camera = initCamera();
 const body = document.body;
 
 init3DHelperGrid(scene);
