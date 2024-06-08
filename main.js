@@ -12,7 +12,7 @@ import {
 } from "./src/KeyboardInput";
 import { initResizeListener } from "./src/Resize";
 import { initSettings } from "./src/Settings";
-import { initKeyboardTooltip } from "./src/Tooltip";
+import { initMainMenuTooltip } from "./src/Tooltip";
 
 import "./src/CSS/controls.css";
 import "./src/CSS/crosshair.css";
@@ -67,7 +67,7 @@ function animate() {
 	renderer.render(scene, camera);
 }
 
-initKeyboardTooltip(body);
+initMainMenuTooltip(body);
 initResizeListener(camera, renderer);
 initKeyboard();
 handleOtherKeyBoardInput();

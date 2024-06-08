@@ -1,3 +1,30 @@
+.controlsWrapper{
+    margin-top: 3vh;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.controls{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    
+}
+
+.controls > div{
+    min-height: 150px;
+    margin: 0 20px 0 20px;
+}
+
+label{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Keyboard */
 .controlsLeft{
     display: flex;
     flex-direction: column;
@@ -8,20 +35,12 @@
     margin: 10px 0;
 }
 
-.keyboardTitle{
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-
 .keyboardGrid{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     gap: 5px;
     padding: 5px;
-    
 }
 
 .keys{
@@ -30,8 +49,6 @@
     color: black;
     border-radius: 5px;
     padding: 10px;
-    text-align: center;
-    font-size: 20px;
     cursor: pointer;
 }
 
@@ -54,7 +71,28 @@
     font-weight: bold;
 }
 
+/* Mouse */
 
+.controlsRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;    
+    border-radius: 5px;
+    
+}
+
+.mouseIcon {
+    width: 60px;  
+  }
+
+.mouseIcon:hover{
+    animation: mouseMovement 0.5s linear ;
+}
+
+
+/* Animations */
 @keyframes keyPress{
     0%{
         transform: scale(1);
@@ -65,4 +103,23 @@
     100%{
         transform: scale(1);
     }
+}
+
+@keyframes mouseMovement {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(0, -10px) rotate(-10deg);
+    }
+    50% {
+      transform: translate(0, 10px) rotate(10deg);
+    }
+    75% {
+      transform: translate(0, -10px) rotate(-10deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    
 }

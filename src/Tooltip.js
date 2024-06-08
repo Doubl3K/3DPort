@@ -1,11 +1,24 @@
+export function initMainMenuTooltip(body) {
+	initKeyboardTooltip(body);
+	initMouseTooltip(body);
+}
+
 /**
  * Initializes the tooltip for the keyboard keys in the main Menu
- * @module Tooltip
  */
-export function initKeyboardTooltip(body) {
+function initKeyboardTooltip(body) {
 	let keys = Array.from(body.getElementsByClassName("keys"));
 	let tooltip = buildTooltip();
 	showTooltip(keys, tooltip);
+}
+
+/**
+ * Initializes the tooltip for the mouse in the main Menu
+ */
+function initMouseTooltip(body) {
+	let mouse = Array.from(body.getElementsByClassName("mouseWrapper"));
+	let tooltip = buildTooltip();
+	showTooltip(mouse, tooltip);
 }
 
 /**
