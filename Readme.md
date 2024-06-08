@@ -35,3 +35,19 @@ Do keep in mind that I do by far not require perfect work. But it does have to m
 
 Any more question or maybe found a bug?
 Shoot me a dm!
+
+# Creddits
+
+## Audio
+- Walking SFX
+
+  - https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=32056"
+
+
+## Visual
+- Crosshair
+
+  - https://fonts.google.com/icons?selected=Material+Symbols+Outlined:fiber_manual_record:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=dot&icon.size=24&icon.color=%23e8eaed
+
+- Three.js Logo
+   - https://global.discourse-cdn.com/standard17/uploads/threejs/original/2X/e/e4f86d2200d2d35c30f7b1494e96b9595ebc2751.png

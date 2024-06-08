@@ -1,5 +1,6 @@
 import * as THREE from "three";
 
+import initCamera from "./src/Camera";
 import { initControls } from "./src/Controls";
 import { updateDebugWindow } from "./src/DebuggWindow";
 import { addFloorColision, initFloor } from "./src/Floor";
@@ -11,12 +12,14 @@ import {
 } from "./src/KeyboardInput";
 import { initResizeListener } from "./src/Resize";
 import { initSettings } from "./src/Settings";
+import { initKeyboardTooltip } from "./src/Tooltip";
 
+import "./src/CSS/controls.css";
 import "./src/CSS/crosshair.css";
 import "./src/CSS/debugwindow.css";
 import "./src/CSS/main.css";
 import "./src/CSS/menu.css";
-import initCamera from "./src/Camera";
+import "./src/CSS/tooltip.css";
 
 const scene = new THREE.Scene();
 const camera = initCamera();
@@ -64,6 +67,7 @@ function animate() {
 	renderer.render(scene, camera);
 }
 
+initKeyboardTooltip(body);
 initResizeListener(camera, renderer);
 initKeyboard();
 handleOtherKeyBoardInput();
