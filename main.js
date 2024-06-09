@@ -3,7 +3,6 @@ import * as THREE from "three";
 import initCamera from "./src/Camera";
 import { initControls } from "./src/Controls";
 import { updateDebugWindow } from "./src/DebuggWindow";
-import { addFloorColision, initFloor } from "./src/Floor";
 import { init3DHelperGrid } from "./src/GridHelper";
 import {
 	handleKeyboardMovementInput,
@@ -20,15 +19,16 @@ import "./src/CSS/debugwindow.css";
 import "./src/CSS/main.css";
 import "./src/CSS/menu.css";
 import "./src/CSS/tooltip.css";
+import { initInterior } from "./src/Interior";
 
 const scene = new THREE.Scene();
 const camera = initCamera();
 const body = document.body;
 
 init3DHelperGrid(scene);
-const floor = initFloor();
-const floorColision = addFloorColision();
+// const floorColision = addFloorColision();
 const controls = initControls(camera);
+initInterior(scene);
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -37,7 +37,7 @@ document.body.appendChild(renderer.domElement);
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 const cube = new THREE.Mesh(geometry, material);
-scene.add(cube, floor);
+scene.add(cube);
 let cubeArr = [];
 
 for (let index = 0; index < 100; index++) {
@@ -54,7 +54,7 @@ camera.position.y = 1;
 
 function animate() {
 	requestAnimationFrame(animate);
-	handleKeyboardMovementInput(controls, floorColision);
+	handleKeyboardMovementInput(controls);
 	cubeArr.forEach((cube) => {
 		cube.rotation.x += Math.random() * 0.1;
 		cube.rotation.y += Math.random() * 0.1;
@@ -72,4 +72,5 @@ initResizeListener(camera, renderer);
 initKeyboard();
 handleOtherKeyBoardInput();
 initSettings(body);
+
 animate();
