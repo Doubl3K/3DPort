@@ -70,7 +70,6 @@ function animate() {
 initMainMenuTooltip(body);
 initResizeListener(camera, renderer);
 initKeyboard();
-handleOtherKeyBoardInput();
+handleOtherKeyBoardInput(controls);
 initSettings(body);
-
 animate();

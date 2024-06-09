@@ -1,10 +1,15 @@
 import "./CSS/cli.css";
+import { keyboardEnableSwitch } from "./KeyboardInput";
 
 let cliWrapper;
 let cliHistory;
 let cliInput;
+let controls;
 
-export function initCLI(body) {
+export function initCLI(body, mainControls) {
+	controls = mainControls;
+	keyboardEnableSwitch();
+
 	cliWrapper = document.createElement("div");
 	cliWrapper.classList.add("cliWrapper");
 
@@ -53,4 +58,6 @@ function commandSwitcher(command) {
 
 function exitCli() {
 	cliWrapper.classList.toggle("hidden");
+	controls.connect();
+	keyboardEnableSwitch();
 }
