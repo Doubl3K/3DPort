@@ -1,4 +1,5 @@
 import { PointerLockControls } from "three/examples/jsm/Addons.js";
+import { keyboardEnableSwitch } from "./KeyboardInput";
 
 export function initControls(camera) {
 	const controls = new PointerLockControls(camera, document.body);
@@ -23,12 +24,12 @@ export function initControls(camera) {
 	controls.addEventListener("lock", () => {
 		menu.classList.add("hidden");
 		crosshair.classList.remove("hidden");
-		console.log("controls locked");
+		keyboardEnableSwitch();
 	});
 	controls.addEventListener("unlock", () => {
 		menu.classList.remove("hidden");
 		crosshair.classList.add("hidden");
-		console.log("controls unlocked");
+		keyboardEnableSwitch();
 	});
 
 	return controls;
