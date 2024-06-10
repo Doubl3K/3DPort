@@ -5,7 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "start http://localhost:5173 && vite"
+		"dev": "vite --open",
+		"quickstart": "npm install && npm run dev"
 	},
 	"keywords": [],
 	"author": "",

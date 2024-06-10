@@ -9,7 +9,7 @@ import {
 
 let plane = undefined;
 
-export function initFloor() {
+export function initPlane(rotation) {
 	const geometry = new PlaneGeometry(100, 100);
 	const material = new MeshBasicMaterial({
 		color: "#3D2211",
@@ -17,7 +17,7 @@ export function initFloor() {
 	});
 	plane = new Mesh(geometry, material);
 
-	plane.rotateX(1.5708); //90.0002105 deg
+	plane.rotateX(rotation);
 	return plane;
 }
 

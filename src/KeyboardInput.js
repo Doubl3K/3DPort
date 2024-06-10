@@ -1,4 +1,5 @@
 import { Vector3 } from "three";
+import { initCLI } from "./CommandLine";
 import {
 	closeDebugWindow,
 	initDebugWindow,
@@ -10,10 +11,12 @@ import audio from "../assets/sounds/walkingOnWood.mp3";
 let MOVE_SPEED = 0.1;
 
 let keyboard = {};
+let keyboardEnabled = false;
 let cameraPosition = new Vector3(0, 0, 0);
 let cameraRotation = new Vector3(0, 0, 0);
 
 const walkingSound = new Audio(audio);
+let cliWrapper = null;
 
 /**
  * Initializes the Keyboard by attaching eventListener for keydown and keyup.
@@ -21,12 +24,16 @@ const walkingSound = new Audio(audio);
  * When the button is release a false value is written.
  */
 export function initKeyboard() {
-	window.addEventListener("keydown", function (event) {
-		keyboard[event.key.toLowerCase()] = true;
-	});
-	window.addEventListener("keyup", function (event) {
-		keyboard[event.key.toLowerCase()] = false;
-	});
+	window.addEventListener("keydown", keydownHandler);
+	window.addEventListener("keyup", keyupHandler);
+}
+
+function keydownHandler(event) {
+	keyboard[event.key.toLowerCase()] = true;
+}
+
+function keyupHandler(event) {
+	keyboard[event.key.toLowerCase()] = false;
 }
 
 /**
@@ -63,7 +70,7 @@ other inputs will get a normal event listener */
 /**
  *
  */
-export function handleOtherKeyBoardInput() {
+export function handleOtherKeyBoardInput(controls) {
 	//probably should have used some way of state management
 	let initDebugBoolean = false;
 	let debugWindowOpen = false;
@@ -81,8 +88,19 @@ export function handleOtherKeyBoardInput() {
 					debugWindowOpen = closeDebugWindow();
 				}
 			}
+		}
 
-			console.log(event.key);
+		if (event.key === "T") {
+			event.stopPropagation();
+			if (!cliWrapper) {
+				cliWrapper = initCLI(document.body, controls);
+			} else {
+				cliWrapper.classList.toggle("hidden");
+			}
+			event.preventDefault();
+			cliWrapper.querySelector(".cliInput").focus();
+			controls.disconnect();
+			keyboardEnableSwitch();
 		}
 	});
 }
@@ -99,5 +117,17 @@ function handleWalkingSound() {
 	} else {
 		walkingSound.pause();
 		walkingSound.currentTime = Math.random() * 10;
+	}
+}
+
+export function keyboardEnableSwitch() {
+	if (!keyboardEnabled) {
+		window.addEventListener("keydown", keydownHandler);
+		window.addEventListener("keyup", keyupHandler);
+		keyboardEnabled = true;
+	} else {
+		window.removeEventListener("keydown", keydownHandler);
+		window.removeEventListener("keyup", keyupHandler);
+		keyboardEnabled = false;
 	}
 }

@@ -1,0 +1,19 @@
+.debugWindowWrapper{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 98%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 12px;
+    font-family: monospace;
+    display: none;
+    opacity: 0.7;
+    backdrop-filter: blur(5px);
+}
+
+.debugWindowWrapper.active{
+    display: block;
+}
