@@ -1,4 +1,5 @@
 import { PointerLockControls } from "three/examples/jsm/Addons.js";
+import audio from "../assets/sounds/heartboundost.mp3";
 import { keyboardEnableSwitch } from "./KeyboardInput";
 
 export function initControls(camera) {
@@ -6,6 +7,9 @@ export function initControls(camera) {
 
 	const startButton = document.getElementsByClassName("start")[0];
 	const menu = document.getElementsByClassName("mainMenu")[0];
+	const bgm = new Audio(audio);
+	bgm.volume = 0.05;
+	bgm.loop = true;
 
 	let crosshairBuilt = false;
 	let crosshair;
@@ -25,11 +29,13 @@ export function initControls(camera) {
 		menu.classList.add("hidden");
 		crosshair.classList.remove("hidden");
 		keyboardEnableSwitch();
+		bgm.play();
 	});
 	controls.addEventListener("unlock", () => {
 		menu.classList.remove("hidden");
 		crosshair.classList.add("hidden");
 		keyboardEnableSwitch();
+		bgm.pause();
 	});
 
 	return controls;
