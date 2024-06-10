@@ -12,7 +12,7 @@ import {
 import { initResizeListener } from "./src/Resize";
 import { initSettings } from "./src/Settings";
 import { initMainMenuTooltip } from "./src/Tooltip";
-import { initCubes, rotateCubes } from "./Cubes";
+import { initCubes, rotateCubes } from "./src/Cubes";
 
 import "./src/CSS/controls.css";
 import "./src/CSS/crosshair.css";
