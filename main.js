@@ -2,6 +2,7 @@ import * as THREE from "three";
 
 import initCamera from "./src/Camera";
 import { initControls } from "./src/Controls";
+import { initCubes, rotateCubes } from "./src/Cubes";
 import { updateDebugWindow } from "./src/DebuggWindow";
 import { init3DHelperGrid } from "./src/GridHelper";
 import {
@@ -12,7 +13,6 @@ import {
 import { initResizeListener } from "./src/Resize";
 import { initSettings } from "./src/Settings";
 import { initMainMenuTooltip } from "./src/Tooltip";
-import { initCubes, rotateCubes } from "./src/Cubes";
 
 import "./src/CSS/controls.css";
 import "./src/CSS/crosshair.css";
@@ -26,6 +26,10 @@ const scene = new THREE.Scene();
 const camera = initCamera();
 const body = document.body;
 const cubes = initCubes(scene);
+const color = 0xffffff;
+const intensity = 10;
+const light = new THREE.AmbientLight(color, intensity);
+scene.add(light);
 
 init3DHelperGrid(scene);
 // const floorColision = addFloorColision();
