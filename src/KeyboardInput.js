@@ -131,3 +131,11 @@ export function keyboardEnableSwitch() {
 		keyboardEnabled = false;
 	}
 }
+
+export function getMoveSpeed() {
+	return MOVE_SPEED;
+}
+
+export function setMoveSpeed(speed) {
+	MOVE_SPEED = speed;
+}
