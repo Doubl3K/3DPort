@@ -1,3 +1,4 @@
+import { getMouseSpeed, setMouseSpeed } from "./Controls";
 import { getMoveSpeed, setMoveSpeed } from "./KeyboardInput";
 
 export function initSettings(body) {
@@ -29,7 +30,18 @@ function buildSettingsWindow(body) {
 	mouseSensitivityInput.type = "range";
 	mouseSensitivityInput.min = "0";
 	mouseSensitivityInput.max = "10";
-	mouseWrapper.append(mouseSensitivityLabel, mouseSensitivityInput);
+	mouseSensitivityInput.value = getMouseSpeed();
+	mouseSensitivityInput.id = "lookSpeedInput";
+
+	const mouseSensitivityInputValue = document.createElement("span");
+	mouseSensitivityInputValue.innerHTML = mouseSensitivityInput.value;
+	mouseSensitivityInputValue.classList.add("mouseSensitivityInputValue");
+
+	mouseWrapper.append(
+		mouseSensitivityLabel,
+		mouseSensitivityInput,
+		mouseSensitivityInputValue
+	);
 
 	// Movement speed
 	const movementWrapper = document.createElement("div");
@@ -46,7 +58,15 @@ function buildSettingsWindow(body) {
 	movementSpeedInput.value = getMoveSpeed();
 	movementSpeedInput.id = "movementSpeedInput";
 
-	movementWrapper.append(movementSpeedLabel, movementSpeedInput);
+	const movementSpeedInputValue = document.createElement("span");
+	movementSpeedInputValue.innerHTML = movementSpeedInput.value;
+	movementSpeedInputValue.classList.add("movementSpeedInputValue");
+
+	movementWrapper.append(
+		movementSpeedLabel,
+		movementSpeedInput,
+		movementSpeedInputValue
+	);
 
 	settingsWindow.append(settingsLabel, mouseWrapper, movementWrapper);
 	settingsWindowWrapper.appendChild(settingsWindow);
@@ -54,6 +74,7 @@ function buildSettingsWindow(body) {
 	settingsWindowCloser();
 	moveSpeedChangeListener();
 	dontCloseSettingsInWindow();
+	lookSpeedChangeListener();
 }
 
 function settingsWindowCloser() {
@@ -69,6 +90,15 @@ function moveSpeedChangeListener() {
 	const movementSpeedInput = document.querySelector("#movementSpeedInput");
 	movementSpeedInput.addEventListener("change", () => {
 		setMoveSpeed(movementSpeedInput.value);
+		updateMovementValue();
+	});
+}
+
+function lookSpeedChangeListener() {
+	const lookSpeedInput = document.querySelector("#lookSpeedInput");
+	lookSpeedInput.addEventListener("change", () => {
+		setMouseSpeed(lookSpeedInput.value / 10);
+		updateMouseSpeedValue();
 	});
 }
 
@@ -77,4 +107,20 @@ function dontCloseSettingsInWindow() {
 	settingsWindow.addEventListener("click", (event) => {
 		event.stopPropagation();
 	});
+}
+
+function updateMouseSpeedValue() {
+	const mouseSensitivityInput = document.querySelector("#lookSpeedInput");
+	const mouseSensitivityInputValue = document.querySelector(
+		".mouseSensitivityInputValue"
+	);
+	mouseSensitivityInputValue.innerHTML = mouseSensitivityInput.value;
+}
+
+function updateMovementValue() {
+	const movementSpeedInput = document.querySelector("#movementSpeedInput");
+	const movementSpeedInputValue = document.querySelector(
+		".movementSpeedInputValue"
+	);
+	movementSpeedInputValue.innerHTML = movementSpeedInput.value;
 }

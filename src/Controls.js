@@ -2,8 +2,12 @@ import { PointerLockControls } from "three/examples/jsm/Addons.js";
 import audio from "../assets/sounds/heartboundost.mp3";
 import { keyboardEnableSwitch } from "./KeyboardInput";
 
+let MOUSE_SPEED = 1;
+let controls;
+
 export function initControls(camera) {
-	const controls = new PointerLockControls(camera, document.body);
+	controls = new PointerLockControls(camera, document.body);
+	controls.pointerSpeed = MOUSE_SPEED;
 
 	const startButton = document.getElementsByClassName("start")[0];
 	const menu = document.getElementsByClassName("mainMenu")[0];
@@ -52,4 +56,13 @@ function buildCrosshair() {
 	crosshairWrapper.appendChild(crosshair);
 	document.body.appendChild(crosshairWrapper);
 	return crosshairWrapper;
+}
+
+export function getMouseSpeed() {
+	return controls.pointerSpeed;
+}
+
+export function setMouseSpeed(speed) {
+	controls.pointerSpeed = speed;
+	MOUSE_SPEED = speed;
 }
