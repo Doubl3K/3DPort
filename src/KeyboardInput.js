@@ -68,7 +68,8 @@ export function handleKeyboardMovementInput(controls, floorCollision) {
 Since the movement key get checked on every frame
 other inputs will get a normal event listener */
 /**
- *
+ * Handles keyboard inputs that are not used for movement
+ * @param controls The controls of the scene
  */
 export function handleOtherKeyBoardInput(controls) {
 	//probably should have used some way of state management
@@ -120,6 +121,9 @@ function handleWalkingSound() {
 	}
 }
 
+/**
+ * Enables or disables wasd movement input depending on the current state
+ */
 export function keyboardEnableSwitch() {
 	if (!keyboardEnabled) {
 		window.addEventListener("keydown", keydownHandler);
@@ -132,10 +136,18 @@ export function keyboardEnableSwitch() {
 	}
 }
 
+/**
+ * Returns the current movement speed
+ * @returns {number} The current move speed
+ */
 export function getMoveSpeed() {
 	return MOVE_SPEED;
 }
 
+/**
+ * Sets the movement speed
+ * @param {number} speed The new movement speed
+ */
 export function setMoveSpeed(speed) {
 	MOVE_SPEED = speed;
 }

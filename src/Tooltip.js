@@ -1,3 +1,7 @@
+/**
+ * Initializes the tooltips for the main menu
+ * @param {HTMLBodyElement} body - The body element of the document
+ */
 export function initMainMenuTooltip(body) {
 	initKeyboardTooltip(body);
 	initMouseTooltip(body);
@@ -25,7 +29,6 @@ function initMouseTooltip(body) {
  * Shows a tooltip when hovering over an element
  * @param {Array<HTMLElement>} htmlElementArr - Array of HTMLElements to show the tooltip on
  */
-
 function showTooltip(htmlElementArr, tooltip) {
 	htmlElementArr.forEach((element) => {
 		element.addEventListener("mouseover", () => {

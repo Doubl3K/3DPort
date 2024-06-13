@@ -25,6 +25,11 @@ normalMap.repeat.set(10, 10);
 normalMap.minFilter = LinearFilter;
 normalMap.magFilter = LinearFilter;
 
+/**
+ * Initializes the planes used as floor and walls
+ * @param {number} rotation - The rotation of the plane
+ * @returns {Mesh} The plane
+ */
 export function initPlane(rotation) {
 	const geometry = new PlaneGeometry(100, 100);
 	const material = new MeshStandardMaterial({
@@ -39,6 +44,11 @@ export function initPlane(rotation) {
 	return plane;
 }
 
+/**
+ * Adds colision to the plane
+ * @param {number} rotation - The rotation of the plane
+ * @returns {Box3} The bounding box of the plane
+ */
 export function addFloorColision() {
 	const planeBB = new Box3(new Vector3(), new Vector3());
 	planeBB.setFromObject(plane);
