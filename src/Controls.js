@@ -5,6 +5,11 @@ import { keyboardEnableSwitch } from "./KeyboardInput";
 let MOUSE_SPEED = 1;
 let controls;
 
+/**
+ * Initializes the controls
+ * @param {PerspectiveCamera} camera - The camera of the scene
+ * @returns {PointerLockControls} The new initialized controls
+ */
 export function initControls(camera) {
 	controls = new PointerLockControls(camera, document.body);
 	controls.pointerSpeed = MOUSE_SPEED;
@@ -45,6 +50,10 @@ export function initControls(camera) {
 	return controls;
 }
 
+/**
+ * Builds the crosshair element of the scene
+ * @returns {HTMLDivElement} The new crosshair element with children
+ */
 function buildCrosshair() {
 	const crosshairWrapper = document.createElement("div");
 	const crosshair = document.createElement("img");
@@ -58,10 +67,18 @@ function buildCrosshair() {
 	return crosshairWrapper;
 }
 
+/**
+ * Import to get the current mouse speed
+ * @returns {number} The current mouse speed
+ */
 export function getMouseSpeed() {
 	return controls.pointerSpeed;
 }
 
+/**
+ * Import to set the mouse speed
+ * @param {number} speed - The new speed of the mouse
+ */
 export function setMouseSpeed(speed) {
 	controls.pointerSpeed = speed;
 	MOUSE_SPEED = speed;
