@@ -88,7 +88,7 @@ function settingsWindowCloser() {
 
 function moveSpeedChangeListener() {
 	const movementSpeedInput = document.querySelector("#movementSpeedInput");
-	movementSpeedInput.addEventListener("change", () => {
+	movementSpeedInput.addEventListener("input", () => {
 		setMoveSpeed(movementSpeedInput.value);
 		updateMovementValue();
 	});
@@ -96,7 +96,7 @@ function moveSpeedChangeListener() {
 
 function lookSpeedChangeListener() {
 	const lookSpeedInput = document.querySelector("#lookSpeedInput");
-	lookSpeedInput.addEventListener("change", () => {
+	lookSpeedInput.addEventListener("input", () => {
 		setMouseSpeed(lookSpeedInput.value / 10);
 		updateMouseSpeedValue();
 	});
