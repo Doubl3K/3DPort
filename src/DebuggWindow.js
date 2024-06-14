@@ -1,6 +1,9 @@
 let debugWindowWrapper = undefined;
 let camData = undefined;
 
+/**
+ * Initializes the debug window
+ */
 export function initDebugWindow() {
 	debugWindowWrapper = document.createElement("div");
 	debugWindowWrapper.classList.add("debugWindowWrapper");
@@ -19,6 +22,10 @@ export function initDebugWindow() {
 	document.getElementsByTagName("body")[0].append(debugWindowWrapper);
 }
 
+/**
+ * Opens the debug window
+ * This will probably, hopefully, be removed in the future
+ */
 export function openDebugWindow() {
 	debugWindowWrapper.classList.add("active");
 
@@ -26,6 +33,10 @@ export function openDebugWindow() {
 	return true;
 }
 
+/**
+ * Closes the debug window
+ * This will probably, hopefully, be removed in the future
+ */
 export function closeDebugWindow() {
 	debugWindowWrapper.classList.remove("active");
 
@@ -33,6 +44,9 @@ export function closeDebugWindow() {
 	return false;
 }
 
+/**
+ * Updates the debug window with the current camera position
+ */
 export function updateDebugWindow(cameraPosition) {
 	//Better user perfomance since called once per frame
 	if (debugWindowWrapper === undefined) {

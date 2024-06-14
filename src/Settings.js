@@ -1,6 +1,11 @@
 import { getMouseSpeed, setMouseSpeed } from "./Controls";
 import { getMoveSpeed, setMoveSpeed } from "./KeyboardInput";
 
+/**
+ * Initializes the settings button.
+ * This keeps initial load time lower by not loading the settings window until it is needed.
+ * @param {HTMLBodyElement} body - The body element of the document
+ */
 export function initSettings(body) {
 	document
 		.getElementsByClassName("settings")[0]
@@ -9,6 +14,11 @@ export function initSettings(body) {
 		});
 }
 
+/**
+ * Builds the settings window
+ * @param {HTMLBodyElement} body - The body element of the document
+ * @returns {HTMLDivElement} The settings window wrapper with children
+ */
 function buildSettingsWindow(body) {
 	const settingsWindowWrapper = document.createElement("div");
 	settingsWindowWrapper.classList.add("settingsWindowWrapper");
@@ -77,6 +87,9 @@ function buildSettingsWindow(body) {
 	lookSpeedChangeListener();
 }
 
+/**
+ * Closes the settings window when clicked outside of the window
+ */
 function settingsWindowCloser() {
 	let settingsWrapper = document.getElementsByClassName(
 		"settingsWindowWrapper"
@@ -86,6 +99,9 @@ function settingsWindowCloser() {
 	});
 }
 
+/**
+ * Adds an event listener to the movement speed input to update the walking speed
+ */
 function moveSpeedChangeListener() {
 	const movementSpeedInput = document.querySelector("#movementSpeedInput");
 	movementSpeedInput.addEventListener("input", () => {
@@ -94,6 +110,9 @@ function moveSpeedChangeListener() {
 	});
 }
 
+/**
+ * Adds an event listener to the look speed input to update the mouse speed
+ */
 function lookSpeedChangeListener() {
 	const lookSpeedInput = document.querySelector("#lookSpeedInput");
 	lookSpeedInput.addEventListener("input", () => {
@@ -102,6 +121,9 @@ function lookSpeedChangeListener() {
 	});
 }
 
+/**
+ * Prevents the settings window from closing when clicked inside the window
+ */
 function dontCloseSettingsInWindow() {
 	const settingsWindow = document.getElementsByClassName("settingsWindow")[0];
 	settingsWindow.addEventListener("click", (event) => {
@@ -109,6 +131,9 @@ function dontCloseSettingsInWindow() {
 	});
 }
 
+/**
+ * Updates the mouse speed value in the settings window shown to the user
+ */
 function updateMouseSpeedValue() {
 	const mouseSensitivityInput = document.querySelector("#lookSpeedInput");
 	const mouseSensitivityInputValue = document.querySelector(
@@ -117,6 +142,9 @@ function updateMouseSpeedValue() {
 	mouseSensitivityInputValue.innerHTML = mouseSensitivityInput.value;
 }
 
+/**
+ * Updates the movement speed value in the settings window shown to the user
+ */
 function updateMovementValue() {
 	const movementSpeedInput = document.querySelector("#movementSpeedInput");
 	const movementSpeedInputValue = document.querySelector(

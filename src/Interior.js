@@ -3,10 +3,18 @@ import { initPlane } from "./Floor";
 
 const texture = new TextureLoader().load("../assets/woodPanel.jpg");
 
+/**
+ * Export to initialize the interior of the room
+ * @param {Scene} scene The scene to add the interior to
+ */
 export function initInterior(scene) {
 	const floorAndWalls = initFloorAndWalls(scene);
 }
 
+/**
+ * Initializes the floor and walls of the room
+ * @param {Scene} scene The scene to add the floor and walls to
+ */
 function initFloorAndWalls(scene) {
 	const floor = initPlane(1.5708);
 	const northWall = initPlane(0);

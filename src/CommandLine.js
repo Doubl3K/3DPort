@@ -6,6 +6,11 @@ let cliHistory;
 let cliInput;
 let controls;
 
+/**
+ * Initialize the CLI
+ * @param {HTMLElement} body - The body element of the document
+ * @param {Controls} mainControls - The controls of the scene
+ */
 export function initCLI(body, mainControls) {
 	controls = mainControls;
 	keyboardEnableSwitch();
@@ -26,6 +31,10 @@ export function initCLI(body, mainControls) {
 	return cliWrapper;
 }
 
+/**
+ * Adds an event listener to the CLI to use commands on Enter
+ * @param {HTMLInputElement} cliInput - The input element of the CLI
+ */
 function cliEnterListener(cliInput) {
 	cliInput.addEventListener("keypress", (event) => {
 		if (event.key === "Enter") {
@@ -36,6 +45,11 @@ function cliEnterListener(cliInput) {
 		}
 	});
 }
+
+/**
+ * Chooses further action based on the command
+ * @param {string} command - The cli Input to execute
+ */
 
 function commandSwitcher(command) {
 	console.log(command);
@@ -56,6 +70,9 @@ function commandSwitcher(command) {
 	}
 }
 
+/**
+ * Exits the CLI by hiding it and enabling the controls
+ */
 function exitCli() {
 	cliWrapper.classList.toggle("hidden");
 	controls.connect();
