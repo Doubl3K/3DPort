@@ -6,6 +6,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "vite --open",
+		"vscDebug": "vite",
+		"stop": "taskkill /IM node.exe /F || true",
 		"quickstart": "npm install && npm run dev"
 	},
 	"keywords": [],

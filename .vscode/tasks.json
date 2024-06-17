@@ -1,27 +1,36 @@
 {
     "version": "2.0.0",
     "tasks": [
-        {
-            "label": "Run Vite",
-            "type": "shell",
-            "command": "npx",
-            "args": ["vite"],
-            "problemMatcher": {
-                "owner": "custom",
-                "pattern": {
-                    "regexp": "."
-                },
-                "background": {
-                    "activeOnStart": true,
-                    "beginsPattern": ".*",
-                    "endsPattern": "ready \\[built\\]"
-                }
-            },
-            "isBackground": true,
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+      {
+        "label": "Run Vite",
+        "type": "npm",
+        "script": "vscDebug",
+        "isBackground": true,
+        "problemMatcher": {
+          "owner": "custom",
+          "pattern": {
+            "regexp": "."
+          },
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": ".*",
+            "endsPattern": ".* Local:   http://localhost:5173/*"
+          }
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
         }
+      },
+      {
+        "label": "Stop Vite",
+        "type": "npm",
+        "script": "stop",
+        "problemMatcher": []
+      }
     ]
-}
+  }
