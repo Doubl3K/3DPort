@@ -5,11 +5,13 @@ import { initControls } from "./src/Controls";
 import { initCubes, rotateCubes } from "./src/Cubes";
 import { updateDebugWindow } from "./src/DebuggWindow";
 import { init3DHelperGrid } from "./src/GridHelper";
+import { initInterior } from "./src/Interior";
 import {
 	handleKeyboardMovementInput,
 	handleOtherKeyBoardInput,
 	initKeyboard,
 } from "./src/KeyboardInput";
+import { addHoverSoundToButtons } from "./src/Menu";
 import { initResizeListener } from "./src/Resize";
 import { initSettings } from "./src/Settings";
 import { initMainMenuTooltip } from "./src/Tooltip";
@@ -20,7 +22,6 @@ import "./src/CSS/debugwindow.css";
 import "./src/CSS/main.css";
 import "./src/CSS/menu.css";
 import "./src/CSS/tooltip.css";
-import { initInterior } from "./src/Interior";
 
 const scene = new THREE.Scene();
 const camera = initCamera();
@@ -56,4 +57,5 @@ initResizeListener(camera, renderer);
 initKeyboard();
 handleOtherKeyBoardInput(controls);
 initSettings(body);
+addHoverSoundToButtons();
 animate();
