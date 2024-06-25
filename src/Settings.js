@@ -116,7 +116,7 @@ function moveSpeedChangeListener() {
 function lookSpeedChangeListener() {
 	const lookSpeedInput = document.querySelector("#lookSpeedInput");
 	lookSpeedInput.addEventListener("input", () => {
-		setMouseSpeed(lookSpeedInput.value / 10);
+		setMouseSpeed(lookSpeedInput.value);
 		updateMouseSpeedValue();
 	});
 }
@@ -139,7 +139,7 @@ function updateMouseSpeedValue() {
 	const mouseSensitivityInputValue = document.querySelector(
 		".mouseSensitivityInputValue"
 	);
-	mouseSensitivityInputValue.innerHTML = mouseSensitivityInput.value;
+	mouseSensitivityInputValue.innerHTML = parseInt(mouseSensitivityInput.value);
 }
 
 /**
@@ -150,5 +150,5 @@ function updateMovementValue() {
 	const movementSpeedInputValue = document.querySelector(
 		".movementSpeedInputValue"
 	);
-	movementSpeedInputValue.innerHTML = movementSpeedInput.value;
+	movementSpeedInputValue.innerHTML = parseInt(movementSpeedInput.value);
 }
