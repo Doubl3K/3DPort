@@ -1,5 +1,6 @@
 import * as THREE from "three";
 
+import Stats from "stats.js";
 import initCamera from "./src/Camera";
 import { initControls } from "./src/Controls";
 import { initCubes, rotateCubes } from "./src/Cubes";
@@ -31,6 +32,8 @@ const cubes = initCubes(scene);
 const color = 0xffffff;
 const intensity = 10;
 const light = new THREE.AmbientLight(color, intensity);
+const stats = new Stats();
+body.appendChild(stats.dom);
 scene.add(light);
 
 init3DHelperGrid(scene);
@@ -46,11 +49,13 @@ camera.position.z = 5;
 camera.position.y = 1;
 
 function animate() {
-	requestAnimationFrame(animate);
+	stats.begin();
 	handleKeyboardMovementInput(controls);
 	rotateCubes(cubes);
 	updateDebugWindow(camera.position);
 	renderer.render(scene, camera);
+	stats.end();
+	requestAnimationFrame(animate);
 }
 
 initMainMenuTooltip(body);
