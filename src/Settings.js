@@ -38,7 +38,7 @@ function buildSettingsWindow(body) {
 
 	const mouseSensitivityInput = document.createElement("input");
 	mouseSensitivityInput.type = "range";
-	mouseSensitivityInput.min = "0";
+	mouseSensitivityInput.min = "1";
 	mouseSensitivityInput.max = "10";
 	mouseSensitivityInput.value = getMouseSpeed();
 	mouseSensitivityInput.id = "lookSpeedInput";
@@ -63,9 +63,9 @@ function buildSettingsWindow(body) {
 	const movementSpeedInput = document.createElement("input");
 
 	movementSpeedInput.type = "range";
-	movementSpeedInput.min = "0.1";
+	movementSpeedInput.min = "1";
 	movementSpeedInput.max = "10";
-	movementSpeedInput.value = getMoveSpeed();
+	movementSpeedInput.value = getMoveSpeed() * 10;
 	movementSpeedInput.id = "movementSpeedInput";
 
 	const movementSpeedInputValue = document.createElement("span");
@@ -105,7 +105,7 @@ function settingsWindowCloser() {
 function moveSpeedChangeListener() {
 	const movementSpeedInput = document.querySelector("#movementSpeedInput");
 	movementSpeedInput.addEventListener("input", () => {
-		setMoveSpeed(movementSpeedInput.value);
+		setMoveSpeed(movementSpeedInput.value / 10);
 		updateMovementValue();
 	});
 }
@@ -150,5 +150,6 @@ function updateMovementValue() {
 	const movementSpeedInputValue = document.querySelector(
 		".movementSpeedInputValue"
 	);
-	movementSpeedInputValue.innerHTML = parseInt(movementSpeedInput.value);
+	// movementSpeedInputValue.innerHTML = parseInt(movementSpeedInput.value * 10 - 1);
+	movementSpeedInputValue.innerHTML = Math.floor(movementSpeedInput.value);
 }
