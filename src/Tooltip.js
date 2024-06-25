@@ -5,6 +5,7 @@
 export function initMainMenuTooltip(body) {
 	initKeyboardTooltip(body);
 	initMouseTooltip(body);
+	initHyyperlinkTooltip(body);
 }
 
 /**
@@ -23,6 +24,12 @@ function initMouseTooltip(body) {
 	let mouse = Array.from(body.getElementsByClassName("mouseWrapper"));
 	let tooltip = buildTooltip();
 	showTooltip(mouse, tooltip);
+}
+
+function initHyyperlinkTooltip(body) {
+	let hyperlinks = Array.from(body.getElementsByTagName("a"));
+	let tooltip = buildTooltip();
+	showTooltip(hyperlinks, tooltip);
 }
 
 /**
