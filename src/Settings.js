@@ -23,18 +23,25 @@ function buildSettingsWindow(body) {
 	const settingsWindowWrapper = document.createElement("div");
 	settingsWindowWrapper.classList.add("settingsWindowWrapper");
 
+	const mouseChangeWrapper = document.createElement("div");
+	mouseChangeWrapper.classList.add("changeWrapper");
+
 	const settingsWindow = document.createElement("div");
 	settingsWindow.classList.add("settingsWindow");
 
 	const settingsLabel = document.createElement("label");
+	settingsLabel.classList.add("settingsLabel");
 	settingsLabel.innerHTML = "Settings";
+
+	const sliderWrapper = document.createElement("div");
+	sliderWrapper.classList.add("sliderWrapper");
 
 	// Mouse Sensitivity
 	const mouseWrapper = document.createElement("div");
 	mouseWrapper.classList.add("mouseWrapper");
 
 	const mouseSensitivityLabel = document.createElement("label");
-	mouseSensitivityLabel.innerHTML = "Mouse Sensitivity";
+	mouseSensitivityLabel.innerHTML = "Mouse Sensitivity:";
 
 	const mouseSensitivityInput = document.createElement("input");
 	mouseSensitivityInput.type = "range";
@@ -47,18 +54,19 @@ function buildSettingsWindow(body) {
 	mouseSensitivityInputValue.innerHTML = mouseSensitivityInput.value;
 	mouseSensitivityInputValue.classList.add("mouseSensitivityInputValue");
 
-	mouseWrapper.append(
-		mouseSensitivityLabel,
-		mouseSensitivityInput,
-		mouseSensitivityInputValue
-	);
+	mouseChangeWrapper.append(mouseSensitivityInput, mouseSensitivityInputValue);
+
+	mouseWrapper.append(mouseSensitivityLabel, mouseChangeWrapper);
 
 	// Movement speed
 	const movementWrapper = document.createElement("div");
 	movementWrapper.classList.add("movementWrapper");
 
+	const movementChangerWrapper = document.createElement("div");
+	movementChangerWrapper.classList.add("changeWrapper");
+
 	const movementSpeedLabel = document.createElement("label");
-	movementSpeedLabel.innerHTML = "Movement Speed";
+	movementSpeedLabel.innerHTML = "Movement Speed:";
 
 	const movementSpeedInput = document.createElement("input");
 
@@ -72,13 +80,11 @@ function buildSettingsWindow(body) {
 	movementSpeedInputValue.innerHTML = movementSpeedInput.value;
 	movementSpeedInputValue.classList.add("movementSpeedInputValue");
 
-	movementWrapper.append(
-		movementSpeedLabel,
-		movementSpeedInput,
-		movementSpeedInputValue
-	);
+	movementChangerWrapper.append(movementSpeedInput, movementSpeedInputValue);
+	movementWrapper.append(movementSpeedLabel, movementChangerWrapper);
 
-	settingsWindow.append(settingsLabel, mouseWrapper, movementWrapper);
+	sliderWrapper.append(mouseWrapper, movementWrapper);
+	settingsWindow.append(settingsLabel, sliderWrapper);
 	settingsWindowWrapper.appendChild(settingsWindow);
 	body.appendChild(settingsWindowWrapper);
 	settingsWindowCloser();
