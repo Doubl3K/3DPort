@@ -1,4 +1,5 @@
 import { TextureLoader } from "three";
+import { initCollision } from "./CollisionDetection";
 import { initPlane } from "./Floor";
 
 const texture = new TextureLoader().load("../assets/woodPanel.jpg");
@@ -41,6 +42,9 @@ function initFloorAndWalls(scene) {
 	westWall.position.y = 50;
 	westWall.position.z = 0;
 	westWall.rotateY(1.5708);
+
+	const collisionArray = [floor, northWall, eastWall, southWall, westWall];
+	initCollision(collisionArray);
 
 	scene.add(floor, northWall, eastWall, southWall, westWall);
 }

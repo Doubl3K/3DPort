@@ -2,6 +2,7 @@ import * as THREE from "three";
 
 import Stats from "stats.js";
 import initCamera from "./src/Camera";
+import { handleCollision } from "./src/CollisionDetection";
 import { initControls } from "./src/Controls";
 import { initCubes, rotateCubes } from "./src/Cubes";
 import { addDucky } from "./src/DebugDucky";
@@ -52,6 +53,7 @@ function animate() {
 	handleKeyboardMovementInput(controls);
 	rotateCubes(cubes);
 	updateDebugWindow(camera.position);
+	handleCollision();
 	renderer.render(scene, camera);
 	stats.end();
 	requestAnimationFrame(animate);
