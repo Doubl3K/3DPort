@@ -6,7 +6,6 @@ import { initControls } from "./src/Controls";
 import { initCubes, rotateCubes } from "./src/Cubes";
 import { addDucky } from "./src/DebugDucky";
 import { updateDebugWindow } from "./src/DebuggWindow";
-import { init3DHelperGrid } from "./src/GridHelper";
 import { initInterior } from "./src/Interior";
 import {
 	handleKeyboardMovementInput,
@@ -15,6 +14,7 @@ import {
 } from "./src/KeyboardInput";
 import { addHoverSoundToButtons } from "./src/Menu";
 import { initResizeListener } from "./src/Resize";
+import { initScene } from "./src/Scene";
 import { initSettings } from "./src/Settings";
 import { initMainMenuTooltip } from "./src/Tooltip";
 
@@ -25,7 +25,7 @@ import "./src/CSS/main.css";
 import "./src/CSS/menu.css";
 import "./src/CSS/tooltip.css";
 
-const scene = new THREE.Scene();
+const scene = initScene();
 const camera = initCamera();
 const body = document.body;
 const cubes = initCubes(scene);
@@ -36,7 +36,6 @@ const stats = new Stats();
 body.appendChild(stats.dom);
 scene.add(light);
 
-init3DHelperGrid(scene);
 // const floorColision = addFloorColision();
 const controls = initControls(camera);
 initInterior(scene);
