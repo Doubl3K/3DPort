@@ -1,11 +1,13 @@
 import { Scene } from "three";
+let scene;
 
 /**
  * Initializes the scene
  * @returns {Scene} The initialized scene
  */
 export function initScene() {
-	return new Scene();
+	scene = new Scene();
+	return scene;
 }
 
 /**
@@ -13,13 +15,13 @@ export function initScene() {
  * @returns {Scene} The current scene
  */
 export function getScene() {
-	return Scene;
+	return scene;
 }
 
 /**
  * Sets the current scene
  * @param {Scene} scene The new scene
  */
-export function setScene(scene) {
-	Scene = scene;
+export function setScene(newScene) {
+	scene = newScene;
 }

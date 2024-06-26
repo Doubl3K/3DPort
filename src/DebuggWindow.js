@@ -1,3 +1,10 @@
+import {
+	add3DHelperGrid,
+	init3DHelperGrid,
+	remove3DHelperGrid,
+} from "./GridHelper";
+import { getScene } from "./Scene";
+
 let debugWindowWrapper = undefined;
 let camData = undefined;
 
@@ -5,6 +12,8 @@ let camData = undefined;
  * Initializes the debug window
  */
 export function initDebugWindow() {
+	init3DHelperGrid(getScene());
+
 	debugWindowWrapper = document.createElement("div");
 	debugWindowWrapper.classList.add("debugWindowWrapper");
 
@@ -19,7 +28,7 @@ export function initDebugWindow() {
 	camData = document.createElement("span");
 
 	debugWindowWrapper.append(debugHeadline, camLabel, camData);
-	document.getElementsByTagName("body")[0].append(debugWindowWrapper);
+	document.body.append(debugWindowWrapper);
 }
 
 /**
@@ -27,6 +36,7 @@ export function initDebugWindow() {
  * This will probably, hopefully, be removed in the future
  */
 export function openDebugWindow() {
+	add3DHelperGrid(getScene());
 	debugWindowWrapper.classList.add("active");
 
 	//Used to tell if the debug window is open
@@ -38,6 +48,7 @@ export function openDebugWindow() {
  * This will probably, hopefully, be removed in the future
  */
 export function closeDebugWindow() {
+	remove3DHelperGrid(getScene());
 	debugWindowWrapper.classList.remove("active");
 
 	//Used to tell if the debug window is open
