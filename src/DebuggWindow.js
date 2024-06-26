@@ -66,9 +66,9 @@ export function updateDebugWindow(cameraPosition) {
 
 	camData.textContent =
 		"X: " +
-		cameraPosition.x +
-		" Y: " +
-		cameraPosition.y +
-		" Z: " +
-		cameraPosition.z;
+		cameraPosition.x.toFixed(2) +
+		"Y: " +
+		cameraPosition.y.toFixed(2) +
+		"Z: " +
+		cameraPosition.z.toFixed(2);
 }
