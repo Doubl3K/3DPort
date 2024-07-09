@@ -25,6 +25,7 @@ import "./src/CSS/debugwindow.css";
 import "./src/CSS/main.css";
 import "./src/CSS/menu.css";
 import "./src/CSS/tooltip.css";
+import { Questsystem } from "./src/Questsystem";
 
 const scene = initScene();
 const camera = initCamera();
@@ -67,3 +68,15 @@ initSettings(body);
 addHoverSoundToButtons();
 addDucky(scene);
 animate();
+
+let questSystem = new Questsystem ();
+
+let test = document.createElement("button");
+test.innerHTML = "Cross out";
+test.style.position = "absolute";
+test.style.top = "200px";
+test.style.left = "200px";
+document.body.appendChild(test);
+test.addEventListener("click", () => {
+	questWindow.finishQuest(questWindow.questWindow.children[0]);
+});

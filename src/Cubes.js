@@ -1,7 +1,7 @@
 import { BoxGeometry, MathUtils, Mesh, MeshBasicMaterial } from "three";
 let cubeArr = [];
 //Change to spawn more cubes
-const CUBE_COUNT = 10;
+const CUBE_COUNT = 0;
 
 /**
  * Initializes cubes for testing purposes
