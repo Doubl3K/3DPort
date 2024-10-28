@@ -8,13 +8,15 @@
 		"dev": "vite --open",
 		"vscDebug": "vite",
 		"stop": "taskkill /IM node.exe /F || true",
-		"quickstart": "npm install && npm run dev"
+		"quickstart": "npm install && npm run dev",
+		"deploy": "gh-pages -d dist"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"description": "",
 	"dependencies": {
+		"gh-pages": "^6.2.0",
 		"stats.js": "^0.17.0",
 		"three": "^0.164.1"
 	},
