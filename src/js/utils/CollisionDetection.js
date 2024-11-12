@@ -1,25 +1,25 @@
-import { Box3, Vector3 } from "three";
-import { getCamera } from "./Camera";
+import { Box3, Vector3 } from "three"
+import { getCamera } from "../components/Camera"
 
-const COLLISION_DISTANCE = 0.025;
-const SAMPLE_SIZE = 2;
+const COLLISION_DISTANCE = 0.025
+const SAMPLE_SIZE = 2
 
-let colidablesArr;
-let playerBB;
-let playerBBSize;
-let currentSample;
-let playerVelocity = new Vector3(0, 0, 0);
-let previousPosition = new Vector3();
+let colidablesArr
+let playerBB
+let playerBBSize
+let currentSample
+let playerVelocity = new Vector3(0, 0, 0)
+let previousPosition = new Vector3()
 
 /**
  * Init collision detection for array of objects with player
  * @param {Array<Object3D>} colidablesArr Array of objects to check for collision
  */
 export function initCollision(collisionsArr) {
-	colidablesArr = collisionsArr;
-	currentSample = 0;
-	addObjectCollisionBoxes(colidablesArr);
-	addPlayerCollisionBox(getCamera());
+	colidablesArr = collisionsArr
+	currentSample = 0
+	addObjectCollisionBoxes(colidablesArr)
+	addPlayerCollisionBox(getCamera())
 }
 
 /**
@@ -28,19 +28,19 @@ export function initCollision(collisionsArr) {
  */
 function addObjectCollisionBoxes(colidablesArr) {
 	colidablesArr.forEach((colidable) => {
-		const colidableBB = new Box3(new Vector3(), new Vector3());
-		colidableBB.setFromObject(colidable);
-		colidableBB.expandByScalar(COLLISION_DISTANCE);
-		colidable.collisionBB = colidableBB;
-	});
+		const colidableBB = new Box3(new Vector3(), new Vector3())
+		colidableBB.setFromObject(colidable)
+		colidableBB.expandByScalar(COLLISION_DISTANCE)
+		colidable.collisionBB = colidableBB
+	})
 }
 
 function addPlayerCollisionBox(player) {
-	playerBB = new Box3(new Vector3(), new Vector3());
-	playerBB.setFromObject(player);
-	playerBB.expandByScalar(COLLISION_DISTANCE);
-	playerBBSize = new Vector3(1, 1, 1);
-	player.collisionBB = playerBB;
+	playerBB = new Box3(new Vector3(), new Vector3())
+	playerBB.setFromObject(player)
+	playerBB.expandByScalar(COLLISION_DISTANCE)
+	playerBBSize = new Vector3(1, 1, 1)
+	player.collisionBB = playerBB
 }
 
 /**
@@ -49,24 +49,24 @@ function addPlayerCollisionBox(player) {
  * @param {Array<Object3D>} colidablesArr Array of objects to check for collision
  */
 export function handleCollision() {
-	let collisionDetected = false;
+	let collisionDetected = false
 	if (!checkForNFrames()) {
-		return;
+		return
 	}
-	playerBB.setFromCenterAndSize(getCamera().position, playerBBSize);
+	playerBB.setFromCenterAndSize(getCamera().position, playerBBSize)
 	for (let i = 0; i < colidablesArr.length; i++) {
 		if (playerBB.intersectsBox(colidablesArr[i].collisionBB)) {
-			collisionDetected = checkCollision(colidablesArr[i].collisionBB);
+			collisionDetected = checkCollision(colidablesArr[i].collisionBB)
 		}
 	}
 
 	// Only update the player's position if no collision was detected
 	if (!collisionDetected) {
-		previousPosition.copy(getCamera().position);
-		getCamera().position.add(playerVelocity);
+		previousPosition.copy(getCamera().position)
+		getCamera().position.add(playerVelocity)
 	}
 
-	return;
+	return
 }
 
 /**
@@ -75,12 +75,12 @@ export function handleCollision() {
  * @returns {boolean} True if a collision has occurred
  */
 function checkCollision() {
-	console.log("Collision detected");
+	console.log("Collision detected")
 
 	// Reset player position to previous position
-	getCamera().position.copy(previousPosition);
+	getCamera().position.copy(previousPosition)
 
-	return true;
+	return true
 }
 
 /**
@@ -89,8 +89,8 @@ function checkCollision() {
  */
 function checkForNFrames() {
 	if (SAMPLE_SIZE === currentSample) {
-		currentSample = 0;
-		return true;
+		currentSample = 0
+		return true
 	}
-	currentSample++;
+	currentSample++
 }

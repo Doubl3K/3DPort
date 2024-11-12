@@ -1,22 +1,22 @@
-import { Vector3 } from "three";
-import { initCLI } from "./CommandLine";
+import { Vector3 } from "three"
+import { initCLI } from "../components/CommandLine"
 import {
 	closeDebugWindow,
 	initDebugWindow,
 	openDebugWindow,
-} from "./DebuggWindow";
+} from "../components/DebuggWindow"
 
-import audio from "../assets/sounds/walkingOnWood.mp3";
+import audio from "../../../assets/sounds/walkingOnWood.mp3"
 
-let MOVE_SPEED = 0.1;
+let MOVE_SPEED = 0.1
 
-let keyboard = {};
-let keyboardEnabled = false;
-let cameraPosition = new Vector3(0, 0, 0);
-let cameraRotation = new Vector3(0, 0, 0);
+let keyboard = {}
+let keyboardEnabled = false
+let cameraPosition = new Vector3(0, 0, 0)
+let cameraRotation = new Vector3(0, 0, 0)
 
-const walkingSound = new Audio(audio);
-let cliWrapper = null;
+const walkingSound = new Audio(audio)
+let cliWrapper = null
 
 /**
  * Initializes the Keyboard by attaching eventListener for keydown and keyup.
@@ -24,16 +24,16 @@ let cliWrapper = null;
  * When the button is release a false value is written.
  */
 export function initKeyboard() {
-	window.addEventListener("keydown", keydownHandler);
-	window.addEventListener("keyup", keyupHandler);
+	window.addEventListener("keydown", keydownHandler)
+	window.addEventListener("keyup", keyupHandler)
 }
 
 function keydownHandler(event) {
-	keyboard[event.key.toLowerCase()] = true;
+	keyboard[event.key.toLowerCase()] = true
 }
 
 function keyupHandler(event) {
-	keyboard[event.key.toLowerCase()] = false;
+	keyboard[event.key.toLowerCase()] = false
 }
 
 /**
@@ -46,22 +46,22 @@ function keyupHandler(event) {
  */
 export function handleKeyboardMovementInput(controls, floorCollision) {
 	if (keyboard["w"]) {
-		controls.moveForward(MOVE_SPEED);
+		controls.moveForward(MOVE_SPEED)
 	}
 	if (keyboard["s"]) {
-		controls.moveForward(-MOVE_SPEED);
+		controls.moveForward(-MOVE_SPEED)
 	}
 	if (keyboard["a"]) {
-		controls.moveRight(-MOVE_SPEED);
+		controls.moveRight(-MOVE_SPEED)
 	}
 	if (keyboard["d"]) {
-		controls.moveRight(MOVE_SPEED);
+		controls.moveRight(MOVE_SPEED)
 	}
 	if (keyboard["c"]) {
 	}
 	if (keyboard[" "]) {
 	}
-	handleWalkingSound();
+	handleWalkingSound()
 }
 
 /* This one has it's own function to minimize performance usage
@@ -73,37 +73,37 @@ other inputs will get a normal event listener */
  */
 export function handleOtherKeyBoardInput(controls) {
 	//probably should have used some way of state management
-	let initDebugBoolean = false;
-	let debugWindowOpen = false;
+	let initDebugBoolean = false
+	let debugWindowOpen = false
 	document.addEventListener("keypress", (event) => {
 		//Belive it or not, this is Ctrl + Q
 		if (event.key === "\x11") {
 			if (initDebugBoolean === false) {
-				initDebugWindow();
-				debugWindowOpen = openDebugWindow();
-				initDebugBoolean = true;
+				initDebugWindow()
+				debugWindowOpen = openDebugWindow()
+				initDebugBoolean = true
 			} else {
 				if (!debugWindowOpen) {
-					debugWindowOpen = openDebugWindow();
+					debugWindowOpen = openDebugWindow()
 				} else {
-					debugWindowOpen = closeDebugWindow();
+					debugWindowOpen = closeDebugWindow()
 				}
 			}
 		}
 
 		if (event.key === "T") {
-			event.stopPropagation();
+			event.stopPropagation()
 			if (!cliWrapper) {
-				cliWrapper = initCLI(document.body, controls);
+				cliWrapper = initCLI(document.body, controls)
 			} else {
-				cliWrapper.classList.toggle("hidden");
+				cliWrapper.classList.toggle("hidden")
 			}
-			event.preventDefault();
-			cliWrapper.querySelector(".cliInput").focus();
-			controls.disconnect();
-			keyboardEnableSwitch();
+			event.preventDefault()
+			cliWrapper.querySelector(".cliInput").focus()
+			controls.disconnect()
+			keyboardEnableSwitch()
 		}
-	});
+	})
 }
 
 /**
@@ -113,11 +113,11 @@ export function handleOtherKeyBoardInput(controls) {
  */
 function handleWalkingSound() {
 	if (keyboard["w"] || keyboard["a"] || keyboard["s"] || keyboard["d"]) {
-		walkingSound.loop = true;
-		walkingSound.play();
+		walkingSound.loop = true
+		walkingSound.play()
 	} else {
-		walkingSound.pause();
-		walkingSound.currentTime = Math.random() * 10;
+		walkingSound.pause()
+		walkingSound.currentTime = Math.random() * 10
 	}
 }
 
@@ -126,13 +126,13 @@ function handleWalkingSound() {
  */
 export function keyboardEnableSwitch() {
 	if (!keyboardEnabled) {
-		window.addEventListener("keydown", keydownHandler);
-		window.addEventListener("keyup", keyupHandler);
-		keyboardEnabled = true;
+		window.addEventListener("keydown", keydownHandler)
+		window.addEventListener("keyup", keyupHandler)
+		keyboardEnabled = true
 	} else {
-		window.removeEventListener("keydown", keydownHandler);
-		window.removeEventListener("keyup", keyupHandler);
-		keyboardEnabled = false;
+		window.removeEventListener("keydown", keydownHandler)
+		window.removeEventListener("keyup", keyupHandler)
+		keyboardEnabled = false
 	}
 }
 
@@ -141,7 +141,7 @@ export function keyboardEnableSwitch() {
  * @returns {number} The current move speed
  */
 export function getMoveSpeed() {
-	return MOVE_SPEED;
+	return MOVE_SPEED
 }
 
 /**
@@ -149,5 +149,5 @@ export function getMoveSpeed() {
  * @param {number} speed The new movement speed
  */
 export function setMoveSpeed(speed) {
-	MOVE_SPEED = speed;
+	MOVE_SPEED = speed
 }
