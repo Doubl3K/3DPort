@@ -25,6 +25,7 @@ import "./src/css/debugwindow.css"
 import "./src/css/main.css"
 import "./src/css/menu.css"
 import "./src/css/tooltip.css"
+import { addNpc } from "./src/js/components/models/Npc"
 
 const scene = initScene()
 const camera = initCamera()
@@ -66,5 +67,6 @@ handleOtherKeyBoardInput(controls)
 initSettings(body)
 addHoverSoundToButtons()
 addDucky(scene)
+addNpc(scene)
 animate()
 // initQuestSystem()
